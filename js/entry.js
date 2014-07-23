@@ -12,6 +12,22 @@ function base64_decode(){
 }
 
 /**
+ * SQL Generator
+ */
+function generate(){
+    var excelSource = $("#txt-excelSource").val();
+    $.ajax({
+        type: "POST",
+        url: "../action/create_table_sql_build.php",
+        data: {
+            excelSource: excelSource
+        }
+    }).done(function (data) {
+        $("#txt-sqlResult").val(data);
+    });
+}
+
+/**
  * Initial Loading
  */
 $(function(){
@@ -23,6 +39,9 @@ $(function(){
 			case "li-json":
 				common.li_json_click();
 				break;
+            case "li-sql":
+                common.li_sql_click();
+                break;
 			default:
 				break;
 		}
@@ -40,6 +59,7 @@ var common = {
 			}
 		});
 		$("#div-json").css("display", "none");
+        $("#div-sql").css("display", "none");
 		$("#div-base64").css("display", "block");
 	},
 	"li_json_click" : function(){
@@ -51,8 +71,21 @@ var common = {
 			}
 		});
 		$("#div-base64").css("display", "none");
+        $("#div-sql").css("display", "none");
 		$("#div-json").css("display", "block");
 	},
+    "li_sql_click" : function(){
+        $.each($('.nav-sidebar li'), function(key, value){
+            if($(this).attr("id") == "li-sql"){
+                $("#li-sql").addClass("active");
+            }else{
+                $(this).removeClass("active");
+            }
+        });
+        $("#div-base64").css("display", "none");
+        $("#div-json").css("display", "none");
+        $("#div-sql").css("display", "block");
+    },
     "init" : function(){
         var container, options, json, editor;
 

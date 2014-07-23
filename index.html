@@ -35,6 +35,7 @@
             <ul class="nav nav-sidebar">
                 <li class="active" id="li-base64"><a href="#">Base64 Encoder</a></li>
                 <li id="li-json"><a href="#">JSON Formatter</a></li>
+                <li id="li-sql"><a href="#">SQL Generator</a></li>
             </ul>
             <p class="copyright"><a href="http://tools.aboutcoder.com/">© AboutCoder 2014</a></p>
         </div>
@@ -75,6 +76,34 @@
                     <div style="text-align: right;">
                         <a href="extensions/jsonviewer/index.html" target="_blank"><span class="glyphicon glyphicon-link"></span>旧版入口</a>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="div-sql" style="display:none;">
+            <h2 class="page-header">SQL Generator</h2>
+
+            <div class="row placeholders">
+                <div class="col-xs-5">
+                    <span>Excel Text：[
+                    <a href="upload/DB-TPL_EN.xlsx" target="_blank"><span
+                            class="glyphicon glyphicon-link"></span>Excel Template</a>
+                    ]</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-excelSource"></textarea>
+                </div>
+                <div class="col-xs-2 col-center-block">
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-generate"
+                                onclick="javascript:generate();">Generate<span
+                                class="glyphicon glyphicon-chevron-right"></span></button>
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+                <div class="col-xs-5">
+                    <span>Create Table SQL：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-sqlResult"></textarea>
                 </div>
             </div>
         </div>
