@@ -36,8 +36,13 @@
                 <li class="active" id="li-base64"><a href="#">Base64 Encoder</a></li>
                 <li id="li-json"><a href="#">JSON Formatter</a></li>
                 <li id="li-sql"><a href="#">SQL Generator</a></li>
+                <li id="li-xml"><a href="#">XML Formatter</a></li>
+                <li id="li-sql-formatter"><a href="#">SQL Formatter</a></li>
+                <li id="li-css-formatter"><a href="#">CSS Formatter</a></li>
             </ul>
-            <p class="copyright"><a href="http://tools.aboutcoder.com/">© AboutCoder 2014</a></p>
+            <p class="copyright"><a href="http://tools.aboutcoder.com/" id="a-copyright-text">
+                <!--版本声明信息-->
+            </a></p>
         </div>
 
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="div-base64" style="display:block;">
@@ -107,13 +112,108 @@
                 </div>
             </div>
         </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="div-xml" style="display:none;">
+            <h2 class="page-header">XML Formatter</h2>
+
+            <div class="row placeholders">
+                <div class="col-xs-5">
+                    <span>Pretty XML：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-xml-pretty"></textarea>
+                </div>
+                <div class="col-xs-2 col-center-block">
+                    <p>
+                        <input type="checkbox" id="ck-xml-formatter-preserve-comments" checked="checked"/>
+                        <span style="color: gray;">Preserve Comments</span>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-minify"
+                                onclick="javascript:xml_minify();">Minify<span
+                                class="glyphicon glyphicon-chevron-right"></span></button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-pretty"
+                                onclick="javascript:xml_pretty();"><span
+                                class="glyphicon glyphicon-chevron-left"></span>Pretty
+                        </button>
+                    </p>
+                </div>
+                <div class="col-xs-5">
+                    <span>Minify XML：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-xml-minify"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="div-sql-formatter" style="display:none;">
+            <h2 class="page-header">SQL Formatter</h2>
+
+            <div class="row placeholders">
+                <div class="col-xs-5">
+                    <span>Pretty SQL：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-sql-pretty"></textarea>
+                </div>
+                <div class="col-xs-2 col-center-block">
+                    <p>
+                        <input type="checkbox" id="ck-sql-formatter-preserve-comments" checked="checked"/>
+                        <span style="color: gray;">Preserve Comments</span>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-sql-minify"
+                                onclick="javascript:sql_minify();">Minify<span
+                                class="glyphicon glyphicon-chevron-right"></span></button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-sql-pretty"
+                                onclick="javascript:sql_pretty();"><span
+                                class="glyphicon glyphicon-chevron-left"></span>Pretty
+                        </button>
+                    </p>
+                </div>
+                <div class="col-xs-5">
+                    <span>Minify SQL：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-sql-minify"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="div-css-formatter" style="display:none;">
+            <h2 class="page-header">CSS Formatter</h2>
+
+            <div class="row placeholders">
+                <div class="col-xs-5">
+                    <span>Pretty CSS：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-css-pretty"></textarea>
+                </div>
+                <div class="col-xs-2 col-center-block">
+                    <p>
+                        <input type="checkbox" id="ck-css-formatter-preserve-comments" checked="checked"/>
+                        <span style="color: gray;">Preserve Comments</span>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-css-minify"
+                                onclick="javascript:css_minify();">Minify<span
+                                class="glyphicon glyphicon-chevron-right"></span></button>
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-primary" id="btn-css-pretty"
+                                onclick="javascript:css_pretty();"><span
+                                class="glyphicon glyphicon-chevron-left"></span>Pretty
+                        </button>
+                    </p>
+                </div>
+                <div class="col-xs-5">
+                    <span>Minify CSS：</span>
+                    <textarea class="form-control textarea-readonly" rows="19" id="txt-css-minify"></textarea>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="framework/jquery-1.11.1.min.js"></script>
 <script src="framework/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="js/base64.js"></script>
+<script src="js/common.js"></script>
 <script src="js/entry.js"></script>
 <script src="js/json.js"></script>
+<script src="js/pretty-data.js"></script>
 
 <!--站长统计 BEGIN-->
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252898702'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1252898702%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>

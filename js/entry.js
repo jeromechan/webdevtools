@@ -12,6 +12,63 @@ function base64_decode(){
 }
 
 /**
+ * XML Formatter
+ */
+function xml_minify() {
+    //var pd = require('pretty-data.js').pd;
+    var pd = new pp;
+    var prettyStr = $("#txt-xml-pretty").val();
+    var isPreserveComments = $("#ck-xml-formatter-preserve-comments").is(':checked') ? true : false;
+    var minifyStr = pd.xmlmin(prettyStr, isPreserveComments);
+    $("#txt-xml-minify").val(minifyStr);
+}
+function xml_pretty() {
+    //var pd = require('pretty-data.js').pd;
+    var pd = new pp;
+    var minifyStr = $("#txt-xml-minify").val();
+    var prettyStr = pd.xml(minifyStr, true);
+    $("#txt-xml-pretty").val(prettyStr);
+}
+
+/**
+ * SQL Formatter
+ */
+function sql_minify() {
+    //var pd = require('pretty-data.js').pd;
+    var pd = new pp;
+    var prettyStr = $("#txt-sql-pretty").val();
+    var isPreserveComments = $("#ck-sql-formatter-preserve-comments").is(':checked') ? true : false;
+    var minifyStr = pd.sqlmin(prettyStr, isPreserveComments);
+    $("#txt-sql-minify").val(minifyStr);
+}
+function sql_pretty() {
+    //var pd = require('pretty-data.js').pd;
+    var pd = new pp;
+    var minifyStr = $("#txt-sql-minify").val();
+    var prettyStr = pd.sql(minifyStr, true);
+    $("#txt-sql-pretty").val(prettyStr);
+}
+
+/**
+ * CSS Formatter
+ */
+function css_minify() {
+    //var pd = require('pretty-data.js').pd;
+    var pd = new pp;
+    var prettyStr = $("#txt-css-pretty").val();
+    var isPreserveComments = $("#ck-css-formatter-preserve-comments").is(':checked') ? true : false;
+    var minifyStr = pd.cssmin(prettyStr, isPreserveComments);
+    $("#txt-css-minify").val(minifyStr);
+}
+function css_pretty() {
+    //var pd = require('pretty-data.js').pd;
+    var pd = new pp;
+    var minifyStr = $("#txt-css-minify").val();
+    var prettyStr = pd.css(minifyStr, true);
+    $("#txt-css-pretty").val(prettyStr);
+}
+
+/**
  * SQL Generator
  */
 function generate(){
@@ -42,11 +99,23 @@ $(function(){
             case "li-sql":
                 common.li_sql_click();
                 break;
+            case "li-xml":
+                common.li_xml_click();
+                break;
+            case "li-sql-formatter":
+                common.li_sql_formatter_click();
+                break;
+            case "li-css-formatter":
+                common.li_css_formatter_click();
+                break;
 			default:
 				break;
 		}
     });
     common.init();
+
+    // 初始化版本声明信息
+    get_copyright_date();
 });
 
 var common = {
@@ -61,6 +130,9 @@ var common = {
 		$("#div-json").css("display", "none");
         $("#div-sql").css("display", "none");
 		$("#div-base64").css("display", "block");
+        $("#div-xml").css("display", "none");
+        $("#div-sql-formatter").css("display", "none");
+        $("#div-css-formatter").css("display", "none");
 	},
 	"li_json_click" : function(){
 		$.each($('.nav-sidebar li'), function(key, value){
@@ -73,6 +145,9 @@ var common = {
 		$("#div-base64").css("display", "none");
         $("#div-sql").css("display", "none");
 		$("#div-json").css("display", "block");
+        $("#div-xml").css("display", "none");
+        $("#div-sql-formatter").css("display", "none");
+        $("#div-css-formatter").css("display", "none");
 	},
     "li_sql_click" : function(){
         $.each($('.nav-sidebar li'), function(key, value){
@@ -85,6 +160,54 @@ var common = {
         $("#div-base64").css("display", "none");
         $("#div-json").css("display", "none");
         $("#div-sql").css("display", "block");
+        $("#div-xml").css("display", "none");
+        $("#div-sql-formatter").css("display", "none");
+        $("#div-css-formatter").css("display", "none");
+    },
+    "li_xml_click" : function(){
+        $.each($('.nav-sidebar li'), function(key, value){
+            if($(this).attr("id") == "li-xml"){
+                $("#li-xml").addClass("active");
+            }else{
+                $(this).removeClass("active");
+            }
+        });
+        $("#div-base64").css("display", "none");
+        $("#div-json").css("display", "none");
+        $("#div-sql").css("display", "none");
+        $("#div-xml").css("display", "block");
+        $("#div-sql-formatter").css("display", "none");
+        $("#div-css-formatter").css("display", "none");
+    },
+    "li_sql_formatter_click" : function(){
+        $.each($('.nav-sidebar li'), function(key, value){
+            if($(this).attr("id") == "li-sql-formatter"){
+                $("#li-sql-formatter").addClass("active");
+            }else{
+                $(this).removeClass("active");
+            }
+        });
+        $("#div-base64").css("display", "none");
+        $("#div-json").css("display", "none");
+        $("#div-sql").css("display", "none");
+        $("#div-xml").css("display", "none");
+        $("#div-sql-formatter").css("display", "block");
+        $("#div-css-formatter").css("display", "none");
+    },
+    "li_css_formatter_click" : function(){
+        $.each($('.nav-sidebar li'), function(key, value){
+            if($(this).attr("id") == "li-css-formatter"){
+                $("#li-css-formatter").addClass("active");
+            }else{
+                $(this).removeClass("active");
+            }
+        });
+        $("#div-base64").css("display", "none");
+        $("#div-json").css("display", "none");
+        $("#div-sql").css("display", "none");
+        $("#div-xml").css("display", "none");
+        $("#div-sql-formatter").css("display", "none");
+        $("#div-css-formatter").css("display", "block");
     },
     "init" : function(){
         var container, options, json, editor;
